@@ -56,3 +56,4 @@ FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
 
 -- Query table to see if they work
 SELECT * FROM dept_emp;
+
