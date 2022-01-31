@@ -54,6 +54,15 @@ FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
 	PRIMARY KEY (emp_no)
 );
 
+-- This one replaced the above -titles- table without a 
+-- primary key
+CREATE TABLE titles (
+	emp_no INT NOT NULL,
+	title VARCHAR (50) NOT NULL,
+	from_date DATE NOT NULL,
+	to_date DATE NOT NULL,
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no)
+--PRIMARY KEY (emp_no)
 -- Query table to see if they work
 SELECT * FROM dept_emp;
 
