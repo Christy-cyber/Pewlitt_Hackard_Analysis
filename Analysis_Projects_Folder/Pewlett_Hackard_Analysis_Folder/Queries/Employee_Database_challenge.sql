@@ -1,6 +1,6 @@
 -- Challenge Deliverable 1--Steps 1-7
 -- Create new Table -retirement titles- from employee and
--- titles tables and filter on birthdate
+-- titles tables, and filter on birthdate
 SELECT e.emp_no,
 	e.first_name,
 	e.last_name,
@@ -35,3 +35,23 @@ INTO retiring_titles
 FROM unique_titles
 GROUP BY title
 ORDER BY count DESC;
+
+-- Challenge Deliverable 2--Steps 1-11
+-- Create a mentorship eligibility table showing employees
+-- who are eligible to participate in mentorship program
+SELECT DISTINCT ON (e.emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	e.birth_date,
+	de.from_date,
+	de.to_date,
+	ti.title
+INTO mentor_elig
+FROM employees AS e
+	INNER JOIN dept_emp as de
+		ON (e.emp_no = de.emp_no)
+	INNER JOIN titles as ti
+		ON (e.emp_no = ti.emp_no)
+WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+	AND (de.to_date = '9999-01-01')
+ORDER BY e.emp_no ASC;
