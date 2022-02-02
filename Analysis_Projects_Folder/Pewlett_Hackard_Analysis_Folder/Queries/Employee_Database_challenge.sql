@@ -77,18 +77,3 @@ ORDER BY e.emp_no ASC;
 SELECT COUNT (emp_no)
 FROM tot_curr_emp
 
--- Additional analysis to determine number of retirees 
--- per department
-SELECT COUNT (emp_no)
-FROM tot_curr_emp
-
-SELECT ne.count, 
-		ne.dept_no,
-		d.dept_name
-INTO ret_by_dept
-FROM no_emp_ret_by_dept as ne
-RIGHT JOIN departments as d
-ON ne.dept_no = d.dept_no
-ORDER by ne.count DESC;
-WHERE ti.to_date = '9999-01-01'
-ORDER BY e.emp_no ASC;
