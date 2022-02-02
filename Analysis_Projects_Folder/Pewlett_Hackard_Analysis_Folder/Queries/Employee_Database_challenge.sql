@@ -55,3 +55,24 @@ FROM employees AS e
 WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 	AND (de.to_date = '9999-01-01')
 ORDER BY e.emp_no ASC;
+
+-- Additional analysis to determine number of mentors by
+-- title
+SELECT COUNT(emp_no), title
+INTO mentor_by_title
+FROM mentor_elig
+GROUP BY title
+ORDER BY count DESC;
+
+-- Additionaly anlayses to determine number of total 
+-- current employees at P-H
+SELECT e.emp_no, ti.to_date
+INTO tot_curr_emp
+FROM employees as e
+LEFT JOIN titles as ti
+ON e.emp_no = ti.emp_no
+WHERE ti.to_date = '9999-01-01'
+ORDER BY e.emp_no ASC;
+
+SELECT COUNT (emp_no)
+FROM tot_curr_emp
